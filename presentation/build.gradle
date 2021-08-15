@@ -1,0 +1,14 @@
+plugins {
+    id 'kotlin'
+    id 'kotlin-kapt'
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+dependencies {
+    implementation project(':domain')
+
+    implementation hiltDependencies.hiltAndroid
+    kapt hiltDependencies.hiltAndroidCompiler
+}

@@ -1,0 +1,49 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
+}
+
+android {
+    compileSdk versions.androidCompileSdk
+
+    defaultConfig {
+        applicationId "ro.smartsociety.bloomandwild"
+        minSdk versions.androidMinSdk
+        targetSdk versions.androidTargetSdk
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        debug {
+            testCoverageEnabled true
+        }
+        release {
+            minifyEnabled false
+        }
+    }
+
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
+    hilt {
+        enableExperimentalClasspathAggregation = true
+    }
+}
+
+dependencies {
+    implementation project(':data')
+    implementation project(':domain')
+    implementation project(':remote')
+    implementation project(':view')
+
+    implementation hiltDependencies.hiltAndroid
+    kapt hiltDependencies.hiltAndroidCompiler
+
+    implementation coroutineDependencies.coroutinesCore
+}

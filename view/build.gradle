@@ -1,0 +1,54 @@
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
+}
+
+android {
+    compileSdk versions.androidCompileSdk
+
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
+    buildFeatures {
+        compose true
+    }
+
+    testOptions {
+        unitTests.all {
+            useJUnitPlatform()
+        }
+    }
+}
+
+dependencies {
+    implementation project(':domain')
+
+    implementation hiltDependencies.hiltAndroid
+    kapt hiltDependencies.hiltAndroidCompiler
+
+    implementation "androidx.hilt:hilt-navigation-compose:1.0.0-alpha03"
+    kapt "androidx.hilt:hilt-compiler:1.0.0"
+
+    implementation viewDependencies.androidxCore
+    implementation viewDependencies.appcompat
+    implementation viewDependencies.material
+
+    implementation viewDependencies.composeUi
+    implementation viewDependencies.composeMaterial
+    implementation viewDependencies.composePreview
+    implementation viewDependencies.composeActivity
+    implementation viewDependencies.composeConstraint
+    implementation viewDependencies.composeLiveData
+
+    implementation viewDependencies.liveData
+    implementation viewDependencies.viewModel
+
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.1'
+    testImplementation 'org.mockito.kotlin:mockito-kotlin:3.2.0'
+    testImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.5.1'
+    testImplementation 'androidx.arch.core:core-testing:2.1.0'
+}

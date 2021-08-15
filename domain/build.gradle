@@ -1,0 +1,17 @@
+plugins {
+    id 'kotlin'
+    id 'kotlin-kapt'
+}
+
+compileKotlin {
+    kotlinOptions.jvmTarget = "1.8"
+    kotlinOptions.freeCompilerArgs = ["-Xallow-result-return-type"]
+}
+
+dependencies {
+    implementation hiltDependencies.hiltCore
+    kapt hiltDependencies.hiltAndroidCompiler
+
+    implementation coroutineDependencies.coroutinesCore
+    implementation coroutineDependencies.coroutinesAndroid
+}

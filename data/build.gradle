@@ -1,0 +1,28 @@
+plugins {
+    id 'kotlin'
+    id 'kotlin-kapt'
+}
+
+compileKotlin {
+    kotlinOptions.jvmTarget = "1.8"
+    kotlinOptions.freeCompilerArgs = ["-Xallow-result-return-type"]
+}
+
+test {
+    useJUnitPlatform()
+}
+
+dependencies {
+    implementation project(':domain')
+
+    implementation hiltDependencies.hiltCore
+    kapt hiltDependencies.hiltAndroidCompiler
+
+    implementation coroutineDependencies.coroutinesCore
+    implementation coroutineDependencies.coroutinesAndroid
+
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.1'
+    testImplementation 'org.mockito.kotlin:mockito-kotlin:3.2.0'
+    testImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.5.1'
+}
